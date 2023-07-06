@@ -104,7 +104,9 @@ function Schedule() {
                   </button>
                 </Col>
                 <Col>
-                  <h1 style={{ fontWeight: "bold" }}>{day}</h1>
+                  <h1 style={{ fontWeight: "bold" }} data-cy="detail-title">
+                    {day}
+                  </h1>
                 </Col>
               </Row>
             </div>
@@ -127,7 +129,11 @@ function Schedule() {
                 src="/img/empty.png"
                 data-cy="todo-empty-state"
                 className="mt-5"
-                style={{ display: "block", margin: "auto" }}
+                style={{ display: "block", margin: "auto", cursor: "pointer" }}
+                onClick={() => {
+                  setModalShow(true);
+                  setAction("create");
+                }}
               />
             </>
           ) : (
