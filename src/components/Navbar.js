@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Navbar } from "react-bootstrap";
 import { pinkBg, purpleBg } from "../constant";
+import { useNavigate } from "react-router-dom";
 
 function NavbarCustom() {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (email === "" || !email || email === undefined) {
@@ -11,6 +13,14 @@ function NavbarCustom() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+
+    localStorage.removeItem("email");
+    navigate("/");
+  };
+
   return (
     <>
       <Navbar
@@ -30,6 +40,7 @@ function NavbarCustom() {
               className="rounded"
               style={{ backgroundColor: pinkBg }}
               data-cy="btn-logout"
+              onClick={handleLogOut}
             >
               Check out | {email}
             </Button>
