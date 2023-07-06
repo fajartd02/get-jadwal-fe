@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, CloseButton, Container, Form } from "react-bootstrap";
 import { pinkBg } from "../constant";
 import axios from "axios";
+import Select from "react-select";
 
 function ModalCreate(props) {
   const { modalShow, handleFunctionClose, handlePostDataInCreate } = props;
@@ -12,12 +13,12 @@ function ModalCreate(props) {
     setTitle(e.target.value);
   };
 
-  const handleDayChange = (e) => {
-    setDay(e.target.value);
+  const handleDayChange = (selectedOption) => {
+    setDay(selectedOption);
   };
   const handleSubmit = async () => {
     const email = localStorage.getItem("email");
-    const body = { title: title, day: day };
+    const body = { title: title, day: day.value };
     try {
       await axios.post(
         "https://getjadwal.api.devcode.gethired.id/schedule?email=" + email,
@@ -38,6 +39,14 @@ function ModalCreate(props) {
       setIsDisabled(false);
     }
   }, [title, day]);
+
+  const options = [
+    { value: "monday", label: "Senin" },
+    { value: "tuesday", label: "Selasa" },
+    { value: "wednesday", label: "Rabu" },
+    { value: "thursday", label: "Kamis" },
+    { value: "friday", label: "Jumat" },
+  ];
 
   return (
     <>
@@ -69,22 +78,14 @@ function ModalCreate(props) {
             <Form.Label htmlFor="inputPilihHari" className="mt-2">
               Pilih Hari
             </Form.Label>
-            <select
-              id="inputPilihHari"
+            <Select
+              options={options}
               value={day}
               onChange={handleDayChange}
-              className="form-select"
+              placeholder="Pilih Hari"
+              isClearable
               data-cy="form-day"
-            >
-              {/* <option value="" disabled>
-                Pilih Hari
-              </option> */}
-              <option value="monday">Senin</option>
-              <option value="tuesday">Selasa</option>
-              <option value="wednesday">Rabu</option>
-              <option value="thursday">Kamis</option>
-              <option value="friday">Jumat</option>
-            </select>
+            />
           </Modal.Body>
           <Modal.Footer>
             <Button
