@@ -73,7 +73,10 @@ function CheckIn() {
           />
 
           {!isValid && !firstReload && (
-            <p style={{ marginLeft: "60px", color: "red" }}>
+            <p
+              style={{ marginLeft: "60px", color: "red" }}
+              data-cy="error-email"
+            >
               <img
                 src="/img/warning.png"
                 alt="test"
