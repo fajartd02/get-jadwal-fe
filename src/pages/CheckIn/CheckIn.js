@@ -1,6 +1,7 @@
 import React from "react";
 import NavbarCustom from "../../components/Navbar";
 import { Button, Card, Container, Form } from "react-bootstrap";
+import { pinkBg } from "../../constant";
 
 function CheckIn() {
   return (
@@ -38,7 +39,7 @@ function CheckIn() {
           />
           <Button
             className="w-75 m-auto mt-1 mb-4"
-            style={{ backgroundColor: "#D9019C", fontWeight: "bold" }}
+            style={{ backgroundColor: pinkBg, fontWeight: "bold" }}
             data-cy="btn-login"
           >
             Mulai Sesi
