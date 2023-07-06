@@ -91,14 +91,21 @@ function ModalDetailCreate(props) {
         show={modalShow}
         size="lg"
         centered
-        data-cy="form-add"
+        data-cy={action === "create" ? "form-add" : "detail-form"}
         className="rounded"
       >
         <Container>
           <Modal.Header>
-            <Modal.Title style={{ fontWeight: "bold" }}>
-              Buat Jadwal Kuliah
-            </Modal.Title>
+            {action === "create" ? (
+              <Modal.Title style={{ fontWeight: "bold" }}>
+                Buat Jadwal Kuliah
+              </Modal.Title>
+            ) : (
+              <Modal.Title style={{ fontWeight: "bold" }}>
+                Edit Mata Kuliah
+              </Modal.Title>
+            )}
+
             <CloseButton onClick={handleFunctionClose} data-cy="close-modal" />
           </Modal.Header>
           <Modal.Body>
