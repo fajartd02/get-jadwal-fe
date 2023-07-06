@@ -3,11 +3,14 @@ import NavbarCustom from "../../components/Navbar";
 import { Button, Card, Container, Form } from "react-bootstrap";
 import { pinkBg } from "../../constant";
 import { validate as IsEmail } from "email-validator";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CheckIn() {
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [firstReload, setFirstReload] = useState(true);
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     const inputValue = e.target.value;
@@ -16,10 +19,23 @@ function CheckIn() {
     setFirstReload(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform desired action when the form is submitted
     console.log("Submitted email:", email);
+    try {
+      const response = await axios.post(
+        "https://getjadwal.api.devcode.gethired.id/checkin",
+        { email }
+      );
+      const { status } = response.data;
+      if (status === "Success") {
+        localStorage.setItem("email", email);
+        navigate("/home");
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
