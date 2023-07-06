@@ -7,15 +7,17 @@ import axios from "axios";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { pinkBg } from "../../constant";
 import ModalDetailCreate from "../../components/ModalDetailCreate";
+import ModalDeleteItem from "../../components/ModalDeleteItem";
 
 function Schedule() {
   const { day } = useParams();
   const [data, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [isPostData, setIsPostData] = useState(false);
+  const [isUpdateData, setIsUpdateData] = useState(false);
   const [action, setAction] = useState("");
   const [selectedTitle, setSelectedTitle] = useState("");
   const [selectedId, setSelectedId] = useState();
+  const [modalShowDelete, setModalShowDelete] = useState(false);
   const navigate = useNavigate();
   const getSchedule = async () => {
     const email = localStorage.getItem("email");
@@ -38,7 +40,11 @@ function Schedule() {
   };
 
   const handlePostDataInCreate = () => {
-    setIsPostData(true);
+    setIsUpdateData(true);
+  };
+
+  const handleDeleteData = () => {
+    setIsUpdateData(true);
   };
 
   useEffect(() => {
@@ -47,11 +53,15 @@ function Schedule() {
 
   useEffect(() => {
     getSchedule();
-    setIsPostData(false);
-  }, [isPostData]);
+    setIsUpdateData(false);
+  }, [isUpdateData]);
 
   const handleFunctionClose = () => {
     setModalShow(false);
+  };
+
+  const handleFunctionCloseDelete = () => {
+    setModalShowDelete(false);
   };
 
   return (
@@ -65,6 +75,13 @@ function Schedule() {
         action={action}
         selectedTitle={selectedTitle}
         selectedId={selectedId}
+      />
+      <ModalDeleteItem
+        modalShow={modalShowDelete}
+        handleFunctionCloseDelete={handleFunctionCloseDelete}
+        selectedTitle={selectedTitle}
+        selectedId={selectedId}
+        handleDeleteData={handleDeleteData}
       />
       <>
         <Container className="mt-4">
@@ -147,6 +164,12 @@ function Schedule() {
                             src="/img/card-item-delete.png"
                             alt="Delete"
                             data-cy="card-item-delete"
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setSelectedTitle(item.title);
+                              setSelectedId(item.id);
+                              setModalShowDelete(true);
+                            }}
                           />
                         </Col>
                       </Row>

@@ -41,7 +41,7 @@ function ModalDetailCreate(props) {
           day: dayInEnglish,
         };
 
-        await axios.patch(
+        await axios.post(
           "https://getjadwal.api.devcode.gethired.id/schedule?email=" + email,
           body
         );
