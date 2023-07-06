@@ -76,9 +76,9 @@ function ModalCreate(props) {
               className="form-select"
               data-cy="form-day"
             >
-              <option value="" disabled>
+              {/* <option value="" disabled>
                 Pilih Hari
-              </option>
+              </option> */}
               <option value="monday">Senin</option>
               <option value="tuesday">Selasa</option>
               <option value="wednesday">Rabu</option>
