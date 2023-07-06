@@ -1,9 +1,12 @@
 import React from "react";
 import { Card, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { textPurple } from "../constant";
 
 function CardCustom(props) {
-  const { day } = props;
+  const { day, data } = props;
+  console.log(data);
+  const length = data.length;
   const navigate = useNavigate();
   const handleDetailSchedule = (day) => {
     navigate("/schedule/" + day);
@@ -17,12 +20,38 @@ function CardCustom(props) {
             e.preventDefault();
             handleDetailSchedule(day);
           }}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", padding: "10px", paddingLeft: "20px" }}
         >
-          <h5 data-cy={`card-title-${day}`}>{day} </h5>
-          <p data-cy={`card-desc-${day}`}>Desc</p>
+          <h4 data-cy={`card-title-${day}`} style={{ fontWeight: "bold" }}>
+            {day}
+          </h4>
+          <p data-cy={`card-desc-${day}`} style={{ color: textPurple }}>
+            {length} Mata Kuliah
+          </p>
         </Container>
       </Card>
+
+      {length > 0 && (
+        <>
+          <Card style={{ padding: "8px", marginTop: "24px" }}>
+            {data.map((item) => {
+              return (
+                <Card.Header
+                  style={{
+                    margin: "6px",
+                    fontWeight: "normal",
+                    fontSize: "16px",
+                  }}
+                  className="rounded"
+                  key={item.id}
+                >
+                  {item.title}
+                </Card.Header>
+              );
+            })}
+          </Card>
+        </>
+      )}
     </>
   );
 }
