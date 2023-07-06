@@ -5,7 +5,6 @@ import { textPurple } from "../constant";
 
 function CardCustom(props) {
   const { day, data } = props;
-  console.log(data);
   const length = data.length;
   const navigate = useNavigate();
   const handleDetailSchedule = (day) => {

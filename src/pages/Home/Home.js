@@ -13,7 +13,8 @@ function Home() {
   const [wednesday, setWednesday] = useState([]);
   const [thursday, setThursday] = useState([]);
   const [friday, setFriday] = useState([]);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [isPostData, setIsPostData] = useState(false);
 
   const getSchedules = async () => {
     const email = localStorage.getItem("email");
@@ -51,9 +52,18 @@ function Home() {
     setModalShow(false);
   };
 
+  const handlePostDataInCreate = () => {
+    setIsPostData(true);
+  };
+
   useEffect(() => {
     getSchedules();
   }, []);
+
+  useEffect(() => {
+    getSchedules();
+    setIsPostData(false);
+  }, [isPostData]);
 
   return (
     <>
@@ -61,6 +71,7 @@ function Home() {
       <ModalCreate
         modalShow={modalShow}
         handleFunctionClose={handleFunctionClose}
+        handlePostDataInCreate={handlePostDataInCreate}
       />
       <Container>
         <Button
@@ -86,10 +97,10 @@ function Home() {
             <CardCustom day={"Rabu"} data={wednesday} />
           </Col>
           <Col>
-            <CardCustom day={"Senin"} data={thursday} />
+            <CardCustom day={"Kamis"} data={thursday} />
           </Col>
           <Col>
-            <CardCustom day={"Senin"} data={friday} />
+            <CardCustom day={"Jumat"} data={friday} />
           </Col>
         </Row>
       </Container>
