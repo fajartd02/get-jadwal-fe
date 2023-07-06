@@ -5,6 +5,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import CheckIn from "./pages/CheckIn/CheckIn";
+import Schedule from "./pages/Schedule/Schedule";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/schedule/:day",
+    element: <Schedule />,
   },
 ]);
 

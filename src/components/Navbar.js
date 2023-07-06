@@ -4,7 +4,7 @@ import { pinkBg, purpleBg } from "../constant";
 import { useNavigate } from "react-router-dom";
 
 function NavbarCustom() {
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(localStorage.getItem("email"));
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function NavbarCustom() {
       setEmail(localStorage.getItem("email"));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [email]);
 
   const handleLogOut = async (e) => {
     e.preventDefault();
