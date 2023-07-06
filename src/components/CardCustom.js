@@ -24,9 +24,15 @@ function CardCustom(props) {
           <h4 data-cy={`card-title-${day}`} style={{ fontWeight: "bold" }}>
             {day}
           </h4>
-          <p data-cy={`card-desc-${day}`} style={{ color: textPurple }}>
-            {length} Mata Kuliah
-          </p>
+          {length > 0 ? (
+            <p data-cy={`card-desc-${day}`} style={{ color: textPurple }}>
+              {length} Mata Kuliah
+            </p>
+          ) : (
+            <p data-cy={`card-desc-${day}`} style={{ color: textPurple }}>
+              Belum ada mata kuliah
+            </p>
+          )}
         </Container>
       </Card>
 

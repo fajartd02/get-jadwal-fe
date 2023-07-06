@@ -62,22 +62,36 @@ function ModalCreate(props) {
             </Form.Label>
             <Form.Select
               id="inputPilihHari"
-              data-cy="form-day"
               value={day}
               onChange={handleDayChange}
+              data-cy="form-day"
             >
               <option value="" disabled>
                 Pilih Hari
               </option>
-              <option value="monday">Senin</option>
-              <option value="tuesday">Selasa</option>
-              <option value="wednesday">Rabu</option>
-              <option value="thursday">Kamis</option>
-              <option value="friday">Jumat</option>
+              <option value="monday" data-cy="form-day">
+                Senin
+              </option>
+              <option value="tuesday" data-cy="form-day">
+                Selasa
+              </option>
+              <option value="wednesday" data-cy="form-day">
+                Rabu
+              </option>
+              <option value="thursday" data-cy="form-day">
+                Kamis
+              </option>
+              <option value="friday" data-cy="form-day">
+                Jumat
+              </option>
             </Form.Select>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={handleSubmit} style={{ backgroundColor: pinkBg }}>
+            <Button
+              onClick={handleSubmit}
+              style={{ backgroundColor: pinkBg }}
+              data-cy="btn-submit"
+            >
               Simpan
             </Button>
           </Modal.Footer>
