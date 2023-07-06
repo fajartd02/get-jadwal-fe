@@ -2,51 +2,88 @@ import React, { useEffect, useState } from "react";
 import { Button, Modal, CloseButton, Container, Form } from "react-bootstrap";
 import { pinkBg } from "../constant";
 import axios from "axios";
-import Select from "react-select";
 
-function ModalCreate(props) {
-  const { modalShow, handleFunctionClose, handlePostDataInCreate } = props;
-  const [title, setTitle] = useState("");
-  const [day, setDay] = useState("");
+function ModalDetailCreate(props) {
+  const {
+    modalShow,
+    handleFunctionClose,
+    day,
+    handlePostDataInCreate,
+    action,
+    selectedTitle,
+    selectedId,
+  } = props;
+  const [title, setTitle] = useState(selectedTitle);
   const [isDisabled, setIsDisabled] = useState(true);
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
   };
 
-  const handleDayChange = (selectedOption) => {
-    setDay(selectedOption);
-  };
   const handleSubmit = async () => {
     const email = localStorage.getItem("email");
-    const body = { title: title, day: day.value };
     try {
-      await axios.post(
-        "https://getjadwal.api.devcode.gethired.id/schedule?email=" + email,
-        body
-      );
+      if (action === "create") {
+        let dayInEnglish;
+        if (day === "Senin") {
+          dayInEnglish = "monday";
+        } else if (day === "Selasa") {
+          dayInEnglish = "tuesday";
+        } else if (day === "Rabu") {
+          dayInEnglish = "wednesday";
+        } else if (day === "Kamis") {
+          dayInEnglish = "thursday";
+        } else {
+          dayInEnglish = "friday";
+        }
+
+        const body = {
+          title,
+          day: dayInEnglish,
+        };
+
+        await axios.patch(
+          "https://getjadwal.api.devcode.gethired.id/schedule?email=" + email,
+          body
+        );
+      } else {
+        const body = {
+          title,
+        };
+
+        await axios.patch(
+          "https://getjadwal.api.devcode.gethired.id/schedule?email=" +
+            email +
+            "&id=" +
+            selectedId,
+          body
+        );
+      }
+
       handleFunctionClose();
       handlePostDataInCreate();
       setTitle("");
-      setDay("");
       setIsDisabled(true);
     } catch (err) {
-      console.error(err);
+      console.log(err);
     }
   };
 
   useEffect(() => {
-    if (title && day) {
+    if (title) {
       setIsDisabled(false);
     }
-  }, [title, day]);
 
-  const options = [
-    { value: "monday", label: "Senin" },
-    { value: "tuesday", label: "Selasa" },
-    { value: "wednesday", label: "Rabu" },
-    { value: "thursday", label: "Kamis" },
-    { value: "friday", label: "Jumat" },
-  ];
+    if (title === "") {
+      setIsDisabled(true);
+    }
+  }, [title]);
+
+  useEffect(() => {
+    if (action === "edit") {
+      setIsDisabled(false);
+      setTitle(selectedTitle);
+    }
+  }, [action, selectedTitle]);
 
   return (
     <>
@@ -74,19 +111,6 @@ function ModalCreate(props) {
               onChange={handleTitleChange}
               data-cy="form-matkul"
             />
-
-            <Form.Label htmlFor="inputPilihHari" className="mt-2">
-              Pilih Hari
-            </Form.Label>
-            <Select
-              options={options}
-              value={day}
-              onChange={handleDayChange}
-              placeholder="Pilih Hari"
-              isClearable
-              className="custom-select"
-              data-cy="form-day"
-            />
           </Modal.Body>
           <Modal.Footer>
             <Button
@@ -107,4 +131,4 @@ function ModalCreate(props) {
   );
 }
 
-export default ModalCreate;
+export default ModalDetailCreate;
