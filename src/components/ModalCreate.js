@@ -85,8 +85,6 @@ function ModalCreate(props) {
                 onChange={handleDayChange}
                 placeholder="Pilih Hari"
                 isClearable
-                className="form-day"
-                id="form-day"
               />
               <input name="form-day" type="hidden" value={day}></input>
             </div>
