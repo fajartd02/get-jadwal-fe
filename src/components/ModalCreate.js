@@ -50,59 +50,58 @@ function ModalCreate(props) {
 
   return (
     <>
-      <Modal
-        show={modalShow}
-        size="lg"
-        centered
-        data-cy="form-add"
-        className="rounded"
-      >
-        <Container>
-          <Modal.Header>
-            <Modal.Title style={{ fontWeight: "bold" }}>
-              Buat Jadwal Kuliah
-            </Modal.Title>
-            <CloseButton onClick={handleFunctionClose} data-cy="close-modal" />
-          </Modal.Header>
-          <Modal.Body>
-            <Form.Label htmlFor="inputMataKuliah">Mata Kuliah</Form.Label>
-            <Form.Control
-              type="text"
-              id="inputMataKuliah"
-              placeholder="Masukkan Mata Kuliah"
-              value={title}
-              onChange={handleTitleChange}
-              data-cy="form-matkul"
-            />
+      <form data-cy="form-add">
+        <Modal show={modalShow} size="lg" centered className="rounded">
+          <Container>
+            <Modal.Header>
+              <Modal.Title style={{ fontWeight: "bold" }}>
+                Buat Jadwal Kuliah
+              </Modal.Title>
+              <CloseButton
+                onClick={handleFunctionClose}
+                data-cy="close-modal"
+              />
+            </Modal.Header>
+            <Modal.Body>
+              <Form.Label htmlFor="inputMataKuliah">Mata Kuliah</Form.Label>
+              <Form.Control
+                type="text"
+                id="inputMataKuliah"
+                placeholder="Masukkan Mata Kuliah"
+                value={title}
+                onChange={handleTitleChange}
+                data-cy="form-matkul"
+              />
 
-            <Form.Label htmlFor="inputPilihHari" className="mt-2">
-              Pilih Hari
-            </Form.Label>
-            <Select
-              options={options}
-              value={day}
-              onChange={handleDayChange}
-              placeholder="Pilih Hari"
-              isClearable
-              className="custom-select"
-              data-cy="form-day"
-            />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              onClick={handleSubmit}
-              style={{
-                backgroundColor: pinkBg,
-                opacity: isDisabled ? "0.3" : "1",
-              }}
-              disabled={isDisabled}
-              data-cy="btn-submit"
-            >
-              Simpan
-            </Button>
-          </Modal.Footer>
-        </Container>
-      </Modal>
+              <Form.Label htmlFor="inputPilihHari" className="mt-2">
+                Pilih Hari
+              </Form.Label>
+              <Select
+                options={options}
+                value={day}
+                onChange={handleDayChange}
+                placeholder="Pilih Hari"
+                isClearable
+                className="custom-select"
+                data-cy="form-day"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                onClick={handleSubmit}
+                style={{
+                  backgroundColor: pinkBg,
+                  opacity: isDisabled ? "0.3" : "1",
+                }}
+                disabled={isDisabled}
+                data-cy="btn-submit"
+              >
+                Simpan
+              </Button>
+            </Modal.Footer>
+          </Container>
+        </Modal>
+      </form>
     </>
   );
 }
