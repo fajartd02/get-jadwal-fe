@@ -103,23 +103,17 @@ function ModalCreate(props) {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button
-              type="submit"
-              disabled={isDisabled}
+            <Button
+              onClick={handleSubmit}
               style={{
                 backgroundColor: pinkBg,
                 opacity: isDisabled ? "0.3" : "1",
-                color: "white",
-                padding: "6px",
-                paddingRight: "10px",
-                paddingLeft: "10px",
-                borderRadius: "6px",
               }}
-              onClick={handleSubmit}
+              disabled={isDisabled}
               data-cy="btn-submit"
             >
               Simpan
-            </button>
+            </Button>
           </Modal.Footer>
         </Container>
       </Modal>
