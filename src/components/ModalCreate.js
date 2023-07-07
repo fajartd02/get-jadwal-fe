@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, CloseButton, Container, Form } from "react-bootstrap";
+import { Button, Modal, CloseButton, Container, Form } from "react-bootstrap";
 import { pinkBg } from "../constant";
 import axios from "axios";
 import Select from "react-select";
@@ -85,23 +85,23 @@ function ModalCreate(props) {
                 onChange={handleDayChange}
                 placeholder="Pilih Hari"
                 isClearable
+                className="custom-select"
               />
               <input name="form-day" type="hidden" value={day}></input>
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button
-              className="btn rounded"
-              disabled={isDisabled}
+            <Button
+              onClick={handleSubmit}
               style={{
                 backgroundColor: pinkBg,
                 opacity: isDisabled ? "0.3" : "1",
-                color: "white",
               }}
-              onClick={handleSubmit}
+              disabled={isDisabled}
+              data-cy="btn-submit"
             >
               Simpan
-            </button>
+            </Button>
           </Modal.Footer>
         </Container>
       </Modal>
