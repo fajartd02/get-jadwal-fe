@@ -42,19 +42,24 @@ function ModalDeleteItem(props) {
             src="/img/delete.png"
             width={88}
             height={88}
-            style={{ margin: "auto", marginTop: "24px" }}
+            style={{
+              displayh: "flex",
+              marginLeft: "45%",
+              marginRight: "50%",
+              marginTop: "40px",
+              marginBottom: "20px",
+            }}
           />
-          <Modal.Body style={{ margin: "auto" }}>
-            <Container>
-              <h2 className="text-center" style={{ fontWeight: "bold" }}>
-                Hapus Mata Kuliah
-              </h2>
-              <p className="text-center">
-                Apakah anda yakin menghapus kuliah {selectedTitle}
-              </p>
-            </Container>
-          </Modal.Body>
-          <Modal.Footer style={{ margin: "auto" }}>
+          <h2 className="text-center" style={{ fontWeight: "bold" }}>
+            Hapus Mata Kuliah
+          </h2>
+          <p className="text-center">
+            Apakah anda yakin menghapus kuliah {selectedTitle}
+          </p>
+          <Modal.Footer
+            style={{ margin: "auto" }}
+            className="d-flex justify-content-center"
+          >
             <Row>
               <Col>
                 <Button
