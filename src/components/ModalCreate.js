@@ -90,20 +90,22 @@ function ModalCreate(props) {
               <input name="form-day" type="hidden" value={day}></input>
             </div>
           </Modal.Body>
-          <Modal.Footer>
-            <button
-              className="btn rounded"
-              disabled={isDisabled}
-              style={{
-                backgroundColor: pinkBg,
-                opacity: isDisabled ? "0.3" : "1",
-                color: "white",
-              }}
-              onClick={handleSubmit}
-            >
-              Simpan
-            </button>
-          </Modal.Footer>
+          <hr />
+          <button
+            className="btn rounded"
+            disabled={isDisabled}
+            style={{
+              backgroundColor: pinkBg,
+              opacity: isDisabled ? "0.3" : "1",
+              color: "white",
+              float: "right",
+              marginRight: "16px",
+              marginBottom: "24px",
+            }}
+            onClick={handleSubmit}
+          >
+            Simpan
+          </button>
         </Container>
       </Modal>
     </>
