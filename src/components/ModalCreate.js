@@ -92,13 +92,16 @@ function ModalCreate(props) {
           </Modal.Body>
           <Modal.Footer>
             <button
-              className="btn rounded"
               type="submit"
               disabled={isDisabled}
               style={{
                 backgroundColor: pinkBg,
                 opacity: isDisabled ? "0.3" : "1",
                 color: "white",
+                padding: "6px",
+                paddingRight: "10px",
+                paddingLeft: "10px",
+                borderRadius: "6px",
               }}
               onClick={handleSubmit}
               data-cy="btn-submit"
