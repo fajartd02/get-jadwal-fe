@@ -50,7 +50,7 @@ function ModalDeleteItem(props) {
               Hapus Mata Kuliah
             </h2>
             <p className="text-center">
-              Apakah anda yakin menghapus kuliah {selectedTitle}
+              Apakah anda yakin menghapus kuliah {selectedTitle}?
             </p>
           </Container>
         </Modal.Body>
