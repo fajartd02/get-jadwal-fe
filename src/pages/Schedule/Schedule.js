@@ -142,13 +142,17 @@ function Schedule() {
                 return (
                   <Card
                     className="mt-2"
-                    data-cy="card-item-title"
                     key={item.id} // Add a unique key prop
                   >
                     <Card.Body>
                       <Row>
                         <Col xs={8}>
-                          <h4 style={{ marginLeft: "30px" }}>{item.title}</h4>
+                          <h4
+                            style={{ marginLeft: "30px" }}
+                            data-cy="card-item-title"
+                          >
+                            {item.title}
+                          </h4>
                         </Col>
                         <Col
                           xs={4}

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import axios from "axios";
 import React from "react";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 
 function ModalDeleteItem(props) {
   const {
@@ -11,8 +12,7 @@ function ModalDeleteItem(props) {
     handleDeleteData,
   } = props;
 
-  const handleDelete = async (e) => {
-    e.preventDefault(); // Prevent form submission
+  const handleDelete = async () => {
     const email = localStorage.getItem("email");
     try {
       await axios.delete(
@@ -30,76 +30,63 @@ function ModalDeleteItem(props) {
 
   return (
     <>
-      {modalShow && (
-        <div
-          className="modal"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            zIndex: 1050,
-          }}
-        >
-          <div
-            className="modal-content"
-            style={{
-              backgroundColor: "#fff",
-              padding: "20px",
-              borderRadius: "4px",
-              width: "400px",
-              textAlign: "center",
-            }}
-          >
-            <form data-cy="form-delete" onSubmit={handleDelete}>
-              <img
-                src="/img/delete.png"
-                width={88}
-                height={88}
-                style={{ marginBottom: "20px" }}
-              />
-              <h2
+      <Modal
+        show={modalShow}
+        size="lg"
+        centered
+        data-cy="form-delete"
+        className="rounded"
+        style={{ display: "block" }}
+      >
+        <img
+          src="/img/delete.png"
+          width={88}
+          height={88}
+          style={{ margin: "auto", marginTop: "24px" }}
+        />
+        <Modal.Body style={{ margin: "auto" }}>
+          <Container>
+            <h2 className="text-center" style={{ fontWeight: "bold" }}>
+              Hapus Mata Kuliah
+            </h2>
+            <p className="text-center">
+              Apakah anda yakin menghapus kuliah {selectedTitle}
+            </p>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer style={{ margin: "auto" }}>
+          <Row>
+            <Col>
+              <Button
+                id="btn-batal"
+                className="btn"
                 style={{
+                  backgroundColor: "#F4F4F4",
+                  color: "#888888",
                   fontWeight: "bold",
-                  marginBottom: "10px",
+                  width: "112px",
+                }}
+                data-cy="btn-close"
+                onClick={() => {
+                  handleFunctionCloseDelete();
                 }}
               >
-                Hapus Mata Kuliah
-              </h2>
-              <p>Apakah anda yakin menghapus kuliah {selectedTitle}</p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <button
-                  id="btn-batal"
-                  className="btn"
-                  style={{
-                    backgroundColor: "#F4F4F4",
-                    color: "#888888",
-                    fontWeight: "bold",
-                    width: "112px",
-                    marginRight: "10px",
-                  }}
-                  data-cy="btn-close"
-                  onClick={handleFunctionCloseDelete}
-                >
-                  Batal
-                </button>
-                <button
-                  className="btn btn-danger"
-                  style={{ width: "112px" }}
-                  data-cy="btn-submit"
-                >
-                  Hapus
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+                Batal
+              </Button>
+            </Col>
+            <Col>
+              <Button
+                className="btn btn-danger"
+                style={{ width: "112px" }}
+                onClick={handleDelete}
+                data-cy="btn-submit"
+              >
+                Hapus
+              </Button>
+            </Col>
+          </Row>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 }
