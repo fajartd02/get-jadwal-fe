@@ -67,7 +67,14 @@ function ModalCreate(props) {
             <Modal.Title style={{ fontWeight: "bold" }}>
               Buat Jadwal Kuliah
             </Modal.Title>
-            <CloseButton onClick={handleFunctionClose} data-cy="close-modal" />
+            <CloseButton
+              onClick={() => {
+                setTitle("");
+                setDay("");
+                handleFunctionClose();
+              }}
+              data-cy="close-modal"
+            />
           </Modal.Header>
           <Modal.Body>
             <Form.Label htmlFor="inputMataKuliah">Mata Kuliah</Form.Label>
