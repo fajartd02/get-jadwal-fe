@@ -1,14 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import axios from "axios";
 import React from "react";
-import {
-  Button,
-  CloseButton,
-  Col,
-  Container,
-  Modal,
-  Row,
-} from "react-bootstrap";
+import { Button, CloseButton, Container, Modal } from "react-bootstrap";
 
 function ModalDeleteItem(props) {
   const {
@@ -66,36 +59,33 @@ function ModalDeleteItem(props) {
           </Container>
         </Modal.Body>
         <Modal.Footer style={{ margin: "auto" }}>
-          <Row>
-            <Col>
-              <Button
-                id="btn-batal"
-                className="btn"
-                style={{
-                  backgroundColor: "#F4F4F4",
-                  color: "#888888",
-                  fontWeight: "bold",
-                  width: "112px",
-                }}
-                data-cy="btn-close"
-                onClick={() => {
-                  handleFunctionCloseDelete();
-                }}
-              >
-                Batal
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                className="btn btn-danger"
-                style={{ width: "112px" }}
-                onClick={handleDelete}
-                data-cy="btn-submit"
-              >
-                Hapus
-              </Button>
-            </Col>
-          </Row>
+          <div>
+            <Button
+              id="btn-batal"
+              className="btn"
+              style={{
+                backgroundColor: "#F4F4F4",
+                color: "#888888",
+                fontWeight: "bold",
+                width: "112px",
+                marginRight: "10px",
+              }}
+              data-cy="btn-close"
+              onClick={() => {
+                handleFunctionCloseDelete();
+              }}
+            >
+              Batal
+            </Button>
+            <Button
+              className="btn btn-danger"
+              style={{ width: "112px" }}
+              onClick={handleDelete}
+              data-cy="btn-submit"
+            >
+              Hapus
+            </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     </>
