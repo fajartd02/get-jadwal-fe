@@ -35,8 +35,13 @@ function ModalCreate(props) {
   };
 
   useEffect(() => {
+    console.log(title, day);
     if (title && day) {
       setIsDisabled(false);
+    }
+
+    if (!title | !day) {
+      setIsDisabled(true);
     }
   }, [title, day]);
 
