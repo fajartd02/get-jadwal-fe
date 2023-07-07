@@ -37,13 +37,12 @@ function ModalDeleteItem(props) {
         className="rounded"
         style={{ display: "block" }}
       >
-        <form>
+        <form data-cy="form-delete">
           <img
             src="/img/delete.png"
             width={88}
             height={88}
             style={{ margin: "auto", marginTop: "24px" }}
-            data-cy="form-delete"
           />
           <Modal.Body style={{ margin: "auto" }}>
             <Container>
