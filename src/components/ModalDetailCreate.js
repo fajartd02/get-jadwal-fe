@@ -64,7 +64,7 @@ function ModalDetailCreate(props) {
       setTitle("");
       setIsDisabled(true);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

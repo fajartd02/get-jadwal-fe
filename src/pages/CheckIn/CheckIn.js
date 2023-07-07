@@ -22,7 +22,6 @@ function CheckIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Perform desired action when the form is submitted
-    console.log("Submitted email:", email);
     try {
       const response = await axios.post(
         "https://getjadwal.api.devcode.gethired.id/checkin",
