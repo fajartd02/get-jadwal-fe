@@ -91,7 +91,7 @@ function ModalDetailCreate(props) {
         show={modalShow}
         size="lg"
         centered
-        data-cy={action === "create" ? "form-add" : "detail-form"}
+        data-cy="detail-form"
         className="rounded"
       >
         <Container>
