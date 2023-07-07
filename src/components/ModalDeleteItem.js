@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import axios from "axios";
 import React from "react";
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 
 function ModalDeleteItem(props) {
   const {
@@ -12,7 +11,8 @@ function ModalDeleteItem(props) {
     handleDeleteData,
   } = props;
 
-  const handleDelete = async () => {
+  const handleDelete = async (e) => {
+    e.preventDefault(); // Prevent form submission
     const email = localStorage.getItem("email");
     try {
       await axios.delete(
@@ -30,39 +30,50 @@ function ModalDeleteItem(props) {
 
   return (
     <>
-      <Modal
-        show={modalShow}
-        size="lg"
-        centered
-        className="rounded"
-        style={{ display: "block" }}
-      >
-        <form data-cy="form-delete">
-          <img
-            src="/img/delete.png"
-            width={88}
-            height={88}
+      {modalShow && (
+        <div
+          className="modal"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 1050,
+          }}
+        >
+          <div
+            className="modal-content"
             style={{
-              displayh: "flex",
-              marginLeft: "45%",
-              marginRight: "50%",
-              marginTop: "40px",
-              marginBottom: "20px",
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "4px",
+              width: "400px",
+              textAlign: "center",
             }}
-          />
-          <h2 className="text-center" style={{ fontWeight: "bold" }}>
-            Hapus Mata Kuliah
-          </h2>
-          <p className="text-center">
-            Apakah anda yakin menghapus kuliah {selectedTitle}
-          </p>
-          <Modal.Footer
-            style={{ margin: "auto" }}
-            className="d-flex justify-content-center"
           >
-            <Row>
-              <Col>
-                <Button
+            <form data-cy="form-delete" onSubmit={handleDelete}>
+              <img
+                src="/img/delete.png"
+                width={88}
+                height={88}
+                style={{ marginBottom: "20px" }}
+              />
+              <h2
+                style={{
+                  fontWeight: "bold",
+                  marginBottom: "10px",
+                }}
+              >
+                Hapus Mata Kuliah
+              </h2>
+              <p>Apakah anda yakin menghapus kuliah {selectedTitle}</p>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <button
                   id="btn-batal"
                   className="btn"
                   style={{
@@ -70,29 +81,25 @@ function ModalDeleteItem(props) {
                     color: "#888888",
                     fontWeight: "bold",
                     width: "112px",
+                    marginRight: "10px",
                   }}
                   data-cy="btn-close"
-                  onClick={() => {
-                    handleFunctionCloseDelete();
-                  }}
+                  onClick={handleFunctionCloseDelete}
                 >
                   Batal
-                </Button>
-              </Col>
-              <Col>
-                <Button
+                </button>
+                <button
                   className="btn btn-danger"
                   style={{ width: "112px" }}
-                  onClick={handleDelete}
                   data-cy="btn-submit"
                 >
                   Hapus
-                </Button>
-              </Col>
-            </Row>
-          </Modal.Footer>
-        </form>
-      </Modal>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }
