@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, CloseButton, Container, Form } from "react-bootstrap";
+import { Modal, CloseButton, Container, Form } from "react-bootstrap";
 import { pinkBg } from "../constant";
 import axios from "axios";
 import Select from "react-select";
@@ -91,17 +91,18 @@ function ModalCreate(props) {
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              onClick={handleSubmit}
+            <button
+              className="btn rounded"
+              disabled={isDisabled}
               style={{
                 backgroundColor: pinkBg,
                 opacity: isDisabled ? "0.3" : "1",
+                color: "white",
               }}
-              disabled={isDisabled}
-              data-cy="btn-submit"
+              onClick={handleSubmit}
             >
               Simpan
-            </Button>
+            </button>
           </Modal.Footer>
         </Container>
       </Modal>
