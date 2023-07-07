@@ -75,18 +75,20 @@ function ModalCreate(props) {
               data-cy="form-matkul"
             />
 
-            <Form.Label htmlFor="inputPilihHari" className="mt-2">
+            <Form.Label htmlFor="form-day" className="mt-2">
               Pilih Hari
             </Form.Label>
-            <Select
-              options={options}
-              value={day}
-              onChange={handleDayChange}
-              placeholder="Pilih Hari"
-              isClearable
-              className="custom-select"
-              data-cy="form-day"
-            />
+            <div data-cy="form-day">
+              <Select
+                options={options}
+                value={day}
+                onChange={handleDayChange}
+                placeholder="Pilih Hari"
+                isClearable
+                className="custom-select"
+              />
+              <input name="form-day" type="hidden" value={day}></input>
+            </div>
           </Modal.Body>
           <Modal.Footer>
             <Button
