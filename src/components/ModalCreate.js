@@ -93,6 +93,7 @@ function ModalCreate(props) {
           <Modal.Footer>
             <button
               className="btn rounded"
+              type="submit"
               disabled={isDisabled}
               style={{
                 backgroundColor: pinkBg,
