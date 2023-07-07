@@ -25,7 +25,7 @@ function ModalDeleteItem(props) {
       handleFunctionCloseDelete();
       handleDeleteData();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -47,16 +47,26 @@ function ModalDeleteItem(props) {
                     src="/img/delete.png"
                     width={88}
                     height={88}
-                    className="mx-auto"
+                    className="mx-auto mb-3"
                   />
                 </div>
-                <h2 className="text-center">Hapus Mata Kuliah</h2>
-                <p className="text-center">
+                <h2 className="text-center" style={{ fontWeight: "bold" }}>
+                  Hapus Mata Kuliah
+                </h2>
+                <p className="text-center" style={{ fontWeight: 300 }}>
                   Apakah anda yakin menghapus mata kuliah {selectedTitle}?
                 </p>
                 <div className="action d-flex justify-content-center">
                   <button
-                    className="btn btn-secondary me-2"
+                    className="btn rounded"
+                    style={{
+                      backgroundColor: "#F4F4F4",
+                      color: "#888888",
+                      fontWeight: "bold",
+                      marginRight: "12px",
+                      paddingRight: "20px",
+                      paddingLeft: "20px",
+                    }}
                     type="button"
                     data-cy="btn-close"
                     onClick={handleFunctionCloseDelete}
@@ -64,9 +74,16 @@ function ModalDeleteItem(props) {
                     Batal
                   </button>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-danger rounded-fill"
                     data-cy="btn-submit"
                     type="submit"
+                    style={{
+                      fontWeight: "bold",
+                      marginRight: "12px",
+                      paddingRight: "20px",
+                      paddingLeft: "20px",
+                      backgroundColor: "#ED4C5C",
+                    }}
                     onClick={handleDelete}
                   >
                     Hapus
