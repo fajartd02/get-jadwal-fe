@@ -48,45 +48,41 @@ function ModalDeleteItem(props) {
           height={88}
           style={{ margin: "auto", marginTop: "24px" }}
         />
-        <Modal.Body style={{ margin: "auto" }}>
-          <Container>
-            <h2 className="text-center" style={{ fontWeight: "bold" }}>
-              Hapus Mata Kuliah
-            </h2>
-            <p className="text-center">
-              Apakah anda yakin menghapus kuliah {selectedTitle}?
-            </p>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer style={{ margin: "auto" }}>
-          <div>
-            <Button
-              id="btn-batal"
-              className="btn"
-              style={{
-                backgroundColor: "#F4F4F4",
-                color: "#888888",
-                fontWeight: "bold",
-                width: "112px",
-                marginRight: "10px",
-              }}
-              data-cy="btn-close"
-              onClick={() => {
-                handleFunctionCloseDelete();
-              }}
-            >
-              Batal
-            </Button>
-            <Button
-              className="btn btn-danger"
-              style={{ width: "112px" }}
-              onClick={handleDelete}
-              data-cy="btn-submit"
-            >
-              Hapus
-            </Button>
-          </div>
-        </Modal.Footer>
+        <Container className="mt-2 mb-2">
+          <h2 className="text-center" style={{ fontWeight: "bold" }}>
+            Hapus Mata Kuliah
+          </h2>
+          <p className="text-center">
+            Apakah anda yakin menghapus kuliah {selectedTitle}?
+          </p>
+        </Container>
+        <div style={{ margin: "auto" }} className="mb-4">
+          <Button
+            id="btn-batal"
+            className="btn"
+            style={{
+              backgroundColor: "#F4F4F4",
+              color: "#888888",
+              fontWeight: "bold",
+              width: "112px",
+              marginRight: "10px",
+            }}
+            data-cy="btn-close"
+            onClick={() => {
+              handleFunctionCloseDelete();
+            }}
+          >
+            Batal
+          </Button>
+          <Button
+            className="btn btn-danger"
+            style={{ width: "112px" }}
+            onClick={handleDelete}
+            data-cy="btn-submit"
+          >
+            Hapus
+          </Button>
+        </div>
       </Modal>
     </>
   );
